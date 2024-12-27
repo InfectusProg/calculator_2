@@ -1,0 +1,21 @@
+# Files
+CC = g++
+CFLAGS = -std=c++17 -Wall
+SRC = main.cpp calculator.cpp
+OBJ = $(SRC:.cpp=.o)
+TARGET = calculator
+all: $(TARGET)
+
+# Rule to link object files and create the executable
+$(TARGET): $(OBJ)
+	$(CC) $(CFLAGS) -o $@ $^
+
+# Rule to compile source files into object files
+%.o: %.cpp
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Rule to clean up generated files
+clean:
+	rm -f $(OBJ) $(TARGET)
+
+.PHONY: all clean
